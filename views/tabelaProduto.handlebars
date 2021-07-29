@@ -1,0 +1,24 @@
+<a href="/cadastrarProduto"><button type="button" class="btn btn-success">Cadastrar Produto</button></a>
+<p>Olá {{pessoa}}!</p>
+<table class="table">
+    <thead>
+        <tr>
+            <th scope="col">Descrição</th>
+            <th scope="col">Preço</th>
+            <th scope="col">Categoria</th>
+        </tr>
+    </thead>
+    <tbody>
+        {{#each produto}}
+        <tr>
+            <th>{{descricaoProduto}}</th>
+            <td>{{precoProduto}}</td>
+            <td>{{idCategoria}}</td>
+            <td>
+                <a href="/editarProduto/{{idProduto}}"><button type="submit" class="btn btn-warning">Editar</button></a>
+                <a href="/removerProduto/{{idProduto}}"><button type="submit" class="btn btn-danger">Apagar</button></a>
+            </td>
+        </tr>
+        {{/each}}
+    </tbody>
+</table>
