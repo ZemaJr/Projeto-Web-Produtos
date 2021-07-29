@@ -2,10 +2,10 @@ var produto = require("../models/produto")
 var axios = require("axios")
 var qs = require("querystring")
 
-var controlador = {}
+var controladorProduto = {}
 
 //Create - POST
-controlador.inserir = function(req, res) {
+controladorProduto.inserir = function(req, res) {
     produto.create({
         descricaoProduto: req.body.descricaoProduto,
         precoProduto: req.body.precoProduto,
@@ -22,7 +22,7 @@ controlador.inserir = function(req, res) {
 }
 
 //Read - GET
-controlador.buscar = function(req, res) {
+controladorProduto.buscar = function(req, res) {
     produto.findAll({
         raw: true
     }).then(
@@ -41,7 +41,7 @@ controlador.buscar = function(req, res) {
 }
 
 //Read - GET 2
-controlador.buscarUm = function(req, res) {
+controladorProduto.buscarUm = function(req, res) {
     produto.findAll({
         raw: true,
         where: {
@@ -59,7 +59,7 @@ controlador.buscarUm = function(req, res) {
 }
 
 //Update - PUT
-controlador.atualizar = function(req, res) {
+controladorProduto.atualizar = function(req, res) {
     produto.update({
         descricaoProduto: req.body.descricaoProduto,
         precoProduto: req.body.precoProduto,
@@ -80,7 +80,7 @@ controlador.atualizar = function(req, res) {
 }
 
 //Delete - DELETE
-controlador.remover = function(req, res) {
+controladorProduto.remover = function(req, res) {
     produto.destroy({
         where: {
             idproduto: req.params.idProduto
@@ -97,19 +97,19 @@ controlador.remover = function(req, res) {
 }
 
 //solicitarNovoFormulario
-controlador.novoFormProduto = function(req, res) {
+controladorProduto.novoFormProduto = function(req, res) {
     res.render("novoFormProduto")
 }
 
 //solicitarEditarFormulario
-controlador.editarFormProduto = function(req, res) {
+controladorProduto.editarFormProduto = function(req, res) {
     res.render("editarFormProduto", {
         idproduto: req.params.id
     })
 }
 
 //montarRequisiçãoEditar
-controlador.montarReqEdicaoProduto = function(req, res) {
+controladorProduto.montarReqEdicaoProduto = function(req, res) {
     axios.put("/produtos/" + req.params.idProduto,
             qs.stringify({
                 descricaoProduto: req.body.descricaoProduto,
@@ -120,8 +120,10 @@ controlador.montarReqEdicaoProduto = function(req, res) {
                     'Content-Type': 'application/x-www-form-urlencoded'
                 },
                 proxy: {
-                    host: "3.131.97.189",
-                    port: 3000
+                    /* host: "3.131.97.189",
+                    port: 3000 */
+                    host: "localhost",
+                    port: 8081
                 }
             }
         ).then(function() {
@@ -133,11 +135,13 @@ controlador.montarReqEdicaoProduto = function(req, res) {
 }
 
 //montarRequisiçãoRemover
-controlador.montarReqDeleteProduto = function(req, res) {
+controladorProduto.montarReqDeleteProduto = function(req, res) {
     axios.delete('/produtos/' + req.params.idProduto, {
             proxy: {
-                host: "3.131.97.189",
-                port: 3000
+                /*host: "3.131.97.189",
+                port: 3000 */
+                host: "localhost",
+                port: 8081
             }
         }).then(function() {
             res.status(200).redirect("/produtos")
@@ -147,4 +151,4 @@ controlador.montarReqDeleteProduto = function(req, res) {
         })
 }
 
-module.exports = controlador
+module.exports = controladorProduto

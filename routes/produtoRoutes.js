@@ -1,19 +1,19 @@
 var express = require("express")
 var produtoControlador = require("../controllers/controladorProduto")
 
-var rotas = express.Router()
+var rotasProdutos = express.Router()
 
-//rotas da API
-rotas.post("/produtos", produtoControlador.inserir)
-rotas.get("/produtos", produtoControlador.buscar)
-rotas.get("/produtos/:id", produtoControlador.buscarUm)
-rotas.put("/produtos/:id", produtoControlador.atualizar)
-rotas.delete("/produtos/:id", produtoControlador.remover)
+//rotasProdutos da API
+rotasProdutos.post("/produtos", produtoControlador.inserir)
+rotasProdutos.get("/produtos", produtoControlador.buscar)
+rotasProdutos.get("/produtos/:id", produtoControlador.buscarUm)
+rotasProdutos.put("/produtos/:id", produtoControlador.atualizar)
+rotasProdutos.delete("/produtos/:id", produtoControlador.remover)
 
-//rotas de páginas
-rotas.get("/cadastrarProduto", produtoControlador.novoFormProduto) //retorna a página de cadastro
-rotas.get("/editarProduto/:id", produtoControlador.editarFormProduto) //retorna a pagina de edição
-rotas.post("/ediReqProduto/:id", produtoControlador.montarReqEdicaoProduto) //monta requisição de edição
-rotas.get("/removerProduto/:id", produtoControlador.montarReqDeleteProduto) //monta requisição de remoção
+//rotasProdutos de páginas
+rotasProdutos.get("/cadastrarProduto", produtoControlador.novoFormProduto) //retorna a página de cadastro
+rotasProdutos.get("/editarProduto/:id", produtoControlador.editarFormProduto) //retorna a pagina de edição
+rotasProdutos.post("/ediReqProduto/:id", produtoControlador.montarReqEdicaoProduto) //monta requisição de edição
+rotasProdutos.get("/removerProduto/:id", produtoControlador.montarReqDeleteProduto) //monta requisição de remoção
 
-module.exports = rotas
+module.exports = rotasProdutos
