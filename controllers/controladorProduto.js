@@ -30,7 +30,7 @@ controlador.buscar = function(req, res) {
             //res.status(200).send(dados)
             res.render("tabelaProduto", {
                 produto: dados,
-                pessoa: "José Jr."
+                pessoa: "José de Castro Jr."
             })
         }
     ).catch(
@@ -120,7 +120,8 @@ controlador.montarReqEdicaoProduto = function(req, res) {
                     'Content-Type': 'application/x-www-form-urlencoded'
                 },
                 proxy: {
-                    port: 8081
+                    host: "3.131.97.189",
+                    port: 3000
                 }
             }
         ).then(function() {
@@ -135,7 +136,8 @@ controlador.montarReqEdicaoProduto = function(req, res) {
 controlador.montarReqDeleteProduto = function(req, res) {
     axios.delete('/produtos/' + req.params.idProduto, {
             proxy: {
-                port: 8081
+                host: "3.131.97.189",
+                port: 3000
             }
         }).then(function() {
             res.status(200).redirect("/produtos")
