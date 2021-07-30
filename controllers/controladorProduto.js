@@ -45,7 +45,7 @@ controladorProduto.buscarUm = function(req, res) {
     produto.findAll({
         raw: true,
         where: {
-            idproduto: req.params.idProduto
+            idProduto: req.params.idProduto
         }
     }).then(
         function(dados) {
@@ -66,7 +66,7 @@ controladorProduto.atualizar = function(req, res) {
         idCategoria: req.body.idCategoria,
     }, {
         where: {
-            idproduto: req.params.idProduto
+            idProduto: req.params.idProduto
         }
     }).then(
         function(dados) {
@@ -83,7 +83,7 @@ controladorProduto.atualizar = function(req, res) {
 controladorProduto.remover = function(req, res) {
     produto.destroy({
         where: {
-            idproduto: req.params.idProduto
+            idProduto: req.params.idProduto
         }
     }).then(
         function(dados) {
@@ -104,7 +104,7 @@ controladorProduto.novoFormProduto = function(req, res) {
 //solicitarEditarFormulario
 controladorProduto.editarFormProduto = function(req, res) {
     res.render("editarFormProduto", {
-        idproduto: req.params.id
+        idProduto: req.params.idProduto
     })
 }
 
@@ -122,7 +122,7 @@ controladorProduto.montarReqEdicaoProduto = function(req, res) {
                 proxy: {
                     /* host: "3.131.97.189",
                     port: 3000 */
-                    host: "localhost",
+                    // host: "localhost",
                     port: 8081
                 }
             }
@@ -140,7 +140,7 @@ controladorProduto.montarReqDeleteProduto = function(req, res) {
             proxy: {
                 /*host: "3.131.97.189",
                 port: 3000 */
-                host: "localhost",
+                // host: "localhost",
                 port: 8081
             }
         }).then(function() {
