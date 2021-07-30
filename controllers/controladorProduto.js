@@ -64,11 +64,10 @@ controladorProduto.buscarUm = function(req, res) {
 
 //Update - PUT
 controladorProduto.atualizar = function(req, res) {
-    console.log("chegou!" + req.params.id)
     produto.update({
-        descricaoProduto: req.body.descricao,
-        precoProduto: req.body.preco,
-        idCategoria: req.body.idCateg
+        descricaoProduto: req.body.descricaoProduto,
+        precoProduto: req.body.precoProduto,
+        idCategoria: req.body.idCategoria
     }, {
         where: {
             idProduto: req.params.id
