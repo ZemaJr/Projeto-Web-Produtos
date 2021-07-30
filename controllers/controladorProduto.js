@@ -7,9 +7,9 @@ var controladorProduto = {}
 //Create - POST
 controladorProduto.inserir = function(req, res) {
     produto.create({
-        descricaoProduto: req.body.descricaoProduto,
-        precoProduto: req.body.precoProduto,
-        idCategoria: req.body.idCategoria
+        descricaoProduto: req.body.descricao,
+        precoProduto: req.body.preco,
+        idCategoria: req.body.idCateg
     }).then(
         function(dados) {
             res.status(200).redirect("/produtos")
@@ -45,7 +45,7 @@ controladorProduto.buscarUm = function(req, res) {
     produto.findAll({
         raw: true,
         where: {
-            idProduto: req.params.idProduto
+            idProduto: req.params.id
         }
     }).then(
         function(dados) {
@@ -61,12 +61,12 @@ controladorProduto.buscarUm = function(req, res) {
 //Update - PUT
 controladorProduto.atualizar = function(req, res) {
     produto.update({
-        descricaoProduto: req.body.descricaoProduto,
-        precoProduto: req.body.precoProduto,
-        idCategoria: req.body.idCategoria,
+        descricaoProduto: req.body.descricao,
+        precoProduto: req.body.preco,
+        idCategoria: req.body.idCateg
     }, {
         where: {
-            idProduto: req.params.idProduto
+            idProduto: req.params.id
         }
     }).then(
         function(dados) {
@@ -83,7 +83,7 @@ controladorProduto.atualizar = function(req, res) {
 controladorProduto.remover = function(req, res) {
     produto.destroy({
         where: {
-            idProduto: req.params.idProduto
+            idProduto: req.params.id
         }
     }).then(
         function(dados) {
@@ -104,17 +104,17 @@ controladorProduto.novoFormProduto = function(req, res) {
 //solicitarEditarFormulario
 controladorProduto.editarFormProduto = function(req, res) {
     res.render("editarFormProduto", {
-        idProduto: req.params.idProduto
+        idProduto: req.params.id
     })
 }
 
 //montarRequisiçãoEditar
 controladorProduto.montarReqEdicaoProduto = function(req, res) {
-    axios.put("/produtos/" + req.params.idProduto,
+    axios.put("/produtos/" + req.params.id,
             qs.stringify({
-                descricaoProduto: req.body.descricaoProduto,
-                precoProduto: req.body.precoProduto,
-                idCategoria: req.body.idCategoria,
+                descricaoProduto: req.body.descricao,
+                precoProduto: req.body.preco,
+                idCategoria: req.body.idCateg
             }), {
                 headers: {
                     'Content-Type': 'application/x-www-form-urlencoded'
@@ -136,7 +136,7 @@ controladorProduto.montarReqEdicaoProduto = function(req, res) {
 
 //montarRequisiçãoRemover
 controladorProduto.montarReqDeleteProduto = function(req, res) {
-    axios.delete('/produtos/' + req.params.idProduto, {
+    axios.delete('/produtos/' + req.params.id, {
             proxy: {
                 /*host: "3.131.97.189",
                 port: 3000 */
