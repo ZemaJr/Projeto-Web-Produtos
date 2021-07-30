@@ -23,11 +23,15 @@ controladorProduto.inserir = function(req, res) {
 
 //Read - GET
 controladorProduto.buscar = function(req, res) {
+
     produto.findAll({
         raw: true
     }).then(
         function(dados) {
             //res.status(200).send(dados)
+
+            //dados[0].idCategoria = "Não definida"
+            //console.log(dados)
             res.render("tabelaProduto", {
                 produto: dados,
                 pessoa: "José de Castro Jr."
@@ -60,6 +64,7 @@ controladorProduto.buscarUm = function(req, res) {
 
 //Update - PUT
 controladorProduto.atualizar = function(req, res) {
+    console.log("chegou!" + req.params.id)
     produto.update({
         descricaoProduto: req.body.descricao,
         precoProduto: req.body.preco,
