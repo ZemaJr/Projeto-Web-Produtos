@@ -29,7 +29,6 @@ controladorProduto.buscar = function(req, res) {
     }).then(
         function(dados) {
             //res.status(200).send(dados)
-
             //dados[0].idCategoria = "Não definida"
             //console.log(dados)
             res.render("tabelaProduto", {
@@ -124,10 +123,10 @@ controladorProduto.montarReqEdicaoProduto = function(req, res) {
                     'Content-Type': 'application/x-www-form-urlencoded'
                 },
                 proxy: {
-                    /* host: "3.131.97.189",
-                    port: 3000 */
-                    // host: "localhost",
-                    port: 8081
+                    host: "3.131.97.189",
+                    port: 3000
+                        // host: "localhost",
+                        // port: 8081
                 }
             }
         ).then(function() {
@@ -142,10 +141,10 @@ controladorProduto.montarReqEdicaoProduto = function(req, res) {
 controladorProduto.montarReqDeleteProduto = function(req, res) {
     axios.delete('/produtos/' + req.params.id, {
             proxy: {
-                /*host: "3.131.97.189",
-                port: 3000 */
-                // host: "localhost",
-                port: 8081
+                host: "3.131.97.189",
+                port: 3000
+                    // host: "localhost",
+                    // port: 8081
             }
         }).then(function() {
             res.status(200).redirect("/produtos")
